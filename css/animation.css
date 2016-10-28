@@ -1,0 +1,44 @@
+@keyframes change {
+    0%{
+        transform: translateX(100%);
+    }
+    25%{
+        transform: translateX(0);
+    }
+    /*66%{
+        transform:translateX(0);
+    }*/
+    100%{
+        transform:translateX(0);
+    }
+}
+@keyframes next {
+    0%{
+
+    }
+    40%{
+        transform:rotateY(30deg)scale(0.8)translateX(-100%);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
+}
+
+.onNext{
+    /*transition: all 7.5s ease-in-out 1s;
+    transform: translateX(0%);*/
+    animation: change 7.5s ease-in-out;
+
+}
+
+.onNext div{
+    /*transition: all 1.5s ease-in-out 5s;
+    transform: translateX(-100%)rotateY(45deg)scale(0.6);*/
+    animation: next 2.5s ease-in-out 5s;
+}
+
+.timer{
+    width:100%;
+    transition: width 5s linear;
+
+}

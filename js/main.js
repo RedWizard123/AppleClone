@@ -2,6 +2,7 @@ var n=1;
 var i;
 var slide_obj=[];
 var slide_obj_p=[];
+var int;
 function $(value) {
     var obj;
     if (typeof(value) === "string") {
@@ -62,8 +63,57 @@ function resize_(){
         }
     }
 }
+function timer(){
+    if (n > 4) {
+        n=1;
+    }
 
 
+    //slider
+    for ( i = 0; i < 4; i++) {
+        var z= $("#slide-pic-a-" + (i + 1)).style.zIndex;
+        if(z==4){
+            $("#slide-pic-a-" + (i + 1)).style.zIndex=1;
+        }else{
+            $("#slide-pic-a-" + (i + 1)).style.zIndex++;
+        }
+    }
+
+
+    $("#slide-pic-a-"+((n==4)?1:(n+1))).classList.add("onNext");
+    //setTimeout("",1000);
+    $("#slide-pic-a-"+((n==1)?4:(n-1))).classList.remove("onNext");
+
+
+
+    //timer
+    if(n==4){
+        for ( i = 1; i < 4; i++) {
+            $("#main-timer-ul-bar-" + (i + 1)).classList.remove("timer");
+        }
+    }
+    $("#main-timer-ul-bar-"+((n==4)?1:n+1)).classList.add("timer");
+    n++;
+}
+/*
+function next_page(){
+    clearInterval(int);
+    n++;
+    timer();
+    int= setInterval(function(){timer();},5000);
+
+
+
+}
+function last_page(){
+    clearInterval(int);
+    n--;
+    timer();
+    int= setInterval(function(){timer();},5000);
+
+
+
+}*/
 
 window.onresize=function(){resize_()};
 
@@ -78,46 +128,15 @@ window.onload=function(){
 
     $("#slide-pic-a-"+n).classList.add("onNext");
     $("#main-timer-ul-bar-"+n).classList.add("timer");
-    setInterval(function(){
-        if (n > 4) {
-            n=1;
-        }
-
-
-        //slider
-        for ( i = 0; i < 4; i++) {
-            var z= $("#slide-pic-a-" + (i + 1)).style.zIndex;
-            if(z==4){
-                $("#slide-pic-a-" + (i + 1)).style.zIndex=1;
-            }else{
-                $("#slide-pic-a-" + (i + 1)).style.zIndex++;
-            }
-        }
-
-
-        $("#slide-pic-a-"+((n==4)?1:(n+1))).classList.add("onNext");
-        $("#slide-pic-a-"+((n==1)?4:(n-1))).classList.remove("onNext");
-
-
-
-        //timer
-        if(n==4){
-            for ( i = 1; i < 4; i++) {
-                $("#main-timer-ul-bar-" + (i + 1)).classList.remove("timer");
-            }
-        }
-        $("#main-timer-ul-bar-"+((n==4)?1:n+1)).classList.add("timer");
-        n++;
-    },5000);
+    int= setInterval(function(){timer();},5000);
 
 
     var a=document.getElementsByTagName("a");
     for(i=0;i<a.length;i++){
-        a[i].href="#";
+        //a[i].href="#";
     }
 
 };
-
 
 
 

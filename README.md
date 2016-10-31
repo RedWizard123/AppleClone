@@ -1,2 +1,2 @@
 # AppleClone
-bingyan freshman task
+bingyan studio freshman task
